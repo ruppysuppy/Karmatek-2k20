@@ -90,9 +90,9 @@ def logout():
 @login_required
 def account():
     form = UpdateUserForm()
-
+    form.email.data = current_user.email
+    
     if form.validate_on_submit():
-        print("\nUpdating\n")
         current_user.username = form.name.data
         current_user.ph_num = form.ph_num.data
         current_user.dept = form.dept.data
@@ -106,7 +106,6 @@ def account():
 
     elif request.method == "GET":
         form.name.data = current_user.username
-        form.email.data = current_user.email
         form.ph_num.data = current_user.ph_num
         form.dept.data = current_user.dept
         form.year.data = current_user.year
