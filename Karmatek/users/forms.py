@@ -5,7 +5,7 @@
 # Imports for forms
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Email, EqualTo
 from wtforms import ValidationError
 from flask_wtf.file import FileField, FileAllowed
@@ -46,4 +46,21 @@ class Register(FlaskForm):
     def check_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('The email entered has already been registered')
+
+####################################################
+# UPDATION SETUP ###################################
+####################################################
+
+class UpdateUserForm(FlaskForm):
+    email = StringField('Email'.upper(), validators=[DataRequired(), Email()])
+    name = StringField('Name'.upper(), validators=[DataRequired()])
+    ph_num = IntegerField("Phone Number".upper(), validators=[DataRequired()])
+    dept = StringField("Department".upper(), validators=[DataRequired()])
+    year = IntegerField("Academic Year".upper(), validators=[DataRequired()])
+    submit = SubmitField('UPDATE')
+
+    def check_email(self, field):
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('The email entered has already been registered')
+    
     

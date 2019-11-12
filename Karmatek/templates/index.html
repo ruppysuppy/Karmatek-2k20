@@ -60,7 +60,7 @@
                     <li><a href="{{url_for('home')}}#speakers">Team Karmatek</a></li>
                     <li><a href="{{url_for('home')}}#contact">Contact Us</a></li>
                     {% if current_user.is_authenticated %}
-                    <li><a href="{{url_for('home')}}">Profile</a></li>
+                    <li><a href="{{url_for('users.account')}}">Profile</a></li>
                     <li><a href="{{url_for('users.logout')}}">Logout</a></li>
                     {% else %}
                     <li><a href="{{url_for('home')}}#participate">Login/Sign Up</a></li>
@@ -1288,6 +1288,7 @@
             </div>
         </section>
 
+        {% if not current_user.is_authenticated %}
         <section id="participate" class="section-bg wow fadeInUp">
             <div class="container">
                 <div class="col-md-12">
@@ -1314,7 +1315,7 @@
                 </div>
             </div>
         </section>
-
+        {% endif %}
 
         <!--  <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>

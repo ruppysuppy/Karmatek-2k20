@@ -9,7 +9,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 # IMPORTS (LOCAL) ##################################
 ####################################################
 
-from Karmatek.users.forms import LoginForm, Register
+from Karmatek.users.forms import LoginForm, Register, UpdateUserForm
 from Karmatek.model import User
 from Karmatek import login_manager, db
 
@@ -81,3 +81,34 @@ def logout():
     logout_user()
     flash('Successfully Logged Out!')
     return redirect(url_for('home'))
+
+####################################################
+# PROFILE SETUP ####################################
+####################################################
+
+@users.route('/account', methods=["GET", "POST"])
+@login_required
+def account():
+    form = UpdateUserForm()
+
+    if form.validate_on_submit():
+        print("\nUpdating\n")
+        current_user.username = form.name.data
+        current_user.ph_num = form.ph_num.data
+        current_user.dept = form.dept.data
+        current_user.year = form.year.data
+
+        db.session.commit()
+
+        flash('User Account Updated!')
+
+        return redirect(url_for('home'))
+
+    elif request.method == "GET":
+        form.name.data = current_user.username
+        form.email.data = current_user.email
+        form.ph_num.data = current_user.ph_num
+        form.dept.data = current_user.dept
+        form.year.data = current_user.year
+
+    return render_template('profile.html', form=form)
