@@ -63,4 +63,28 @@ class UpdateUserForm(FlaskForm):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('The email entered has already been registered')
     
-    
+
+class EventsForm(FlaskForm):
+    event_selector = SelectField("Select Events to Participate in".upper(), choices=[
+        ("Robo Race", "Robo Race"),
+        ("Robo Carrom", "Robo Carrom"),
+        ("Robo Soccer", "Robo Soccer"),
+        ("Robo Maze", "Robo Maze"),
+        ("Autonomous Line Follower", "Autonomous Line Follower"),
+        ("Code Beta", "Code Beta"),
+        ("Code Pro", "Code Pro"),
+        ("Web Designing", "Web Designing"),
+        ("Pubg", "Pubg"),
+        ("NFS MW", "NFS MW"),
+        ("Fifa", "Fifa"),
+        ("Call-of-Duty", "Call-of-Duty"),
+        ("Chess", "Chess"),
+        ("Nail it @19", "Nail it @19"),
+        ("Petapixel", "Petapixel"),
+        ("Memester Challenge", "Memester Challenge"),
+        ("Matrivia", "Matrivia"),
+        ("Fandom", "Fandom"),
+        ("Ek Duje ke liye", "Ek Duje ke liye"),
+        ("CubicMatics", "CubicMatics")
+    ])
+    submit = SubmitField('ADD')

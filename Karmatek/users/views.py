@@ -9,8 +9,8 @@ from flask_login import login_user, logout_user, current_user, login_required
 # IMPORTS (LOCAL) ##################################
 ####################################################
 
-from Karmatek.users.forms import LoginForm, Register, UpdateUserForm
-from Karmatek.model import User
+from Karmatek.users.forms import LoginForm, Register, UpdateUserForm, EventsForm
+from Karmatek.model import User, Events
 from Karmatek import login_manager, db
 
 ####################################################
@@ -67,7 +67,7 @@ def register():
             return redirect(url_for('users.login'))
         
         else:
-            flash('Email already registered')
+            flash('Email already registered!')
     
     return render_template('register.html', form=form, page_name="Registration")
 
@@ -91,6 +91,15 @@ def logout():
 def account():
     form = UpdateUserForm()
     form.email.data = current_user.email
+    events = list(Events.query.filter_by(user_id=current_user.id))
+    events_form = EventsForm()
+
+    if events_form.validate_on_submit():
+        temp = Events(current_user.id, events_form.event_selector.data)
+        db.session.add(temp)
+        db.session.commit()
+
+        return redirect(url_for('users.account'))
     
     if form.validate_on_submit():
         current_user.username = form.name.data
@@ -110,4 +119,4 @@ def account():
         form.dept.data = current_user.dept
         form.year.data = current_user.year
 
-    return render_template('profile.html', form=form)
+    return render_template('profile.html', form=form, events_form=events_form, events=events)

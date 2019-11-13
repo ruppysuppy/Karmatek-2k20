@@ -9,7 +9,7 @@ from Karmatek import db, login_manager
 ####################################################
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 
 ####################################################
 # USER LOADER SETUP ################################
@@ -61,7 +61,6 @@ class Events(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    
     event = db.Column(db.String(256), nullable=False)
 
     def __init__(self, user_id, event):
@@ -70,3 +69,6 @@ class Events(db.Model):
     
     def __repr__(self):
         return f"Event: {self.event}"
+    
+    def __str__(self):
+        return self.__repr__()
