@@ -62,7 +62,10 @@ class UpdateUserForm(FlaskForm):
     def check_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('The email entered has already been registered')
-    
+
+####################################################
+# EVENT SELECTION SETUP ############################
+####################################################    
 
 class EventsForm(FlaskForm):
     event_selector = SelectField("Select Events to Participate in".upper(), choices=[

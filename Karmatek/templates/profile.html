@@ -206,12 +206,18 @@
                                             {{events_form.submit(class="btn btn-primary", style="border-radius: 8px; padding: 10px 30px; font-size: 16px; margin-top: 24px;")}}
                                         </div>
                                 </form>
-                                {% if events %} {% for event in events %}
-                                <div class="container">
-                                    <strong>{{ event.event }}</strong>
+                                {% if events %}
+                                <div class="container" style="padding: 12px;">
+                                    <ul>
+                                        {% for event in events %}
+                                        <li>
+                                            <strong>{{ event.event }}</strong>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
                                 </div>
-                                {% endfor %} {% else %}
-                                <h3>Oops! It seems that you haven't registered for any event.</h3>
+                                {% else %}
+                                <h3>It seems that you haven't registered for any event. Register in the events using the selection above.</h3>
                                 {% endif %}
                                 </div>
 

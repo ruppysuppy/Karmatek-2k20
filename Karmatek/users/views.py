@@ -95,9 +95,15 @@ def account():
     events_form = EventsForm()
 
     if events_form.validate_on_submit():
-        temp = Events(current_user.id, events_form.event_selector.data)
-        db.session.add(temp)
-        db.session.commit()
+        check = list(Events.query.filter_by(user_id=current_user.id, event=events_form.event_selector.data))
+
+        if (check):
+            flash("You have already registered for this event!")
+        else:
+            temp = Events(current_user.id, events_form.event_selector.data)
+            db.session.add(temp)
+            db.session.commit()
+            flash("Registration Successful!")
 
         return redirect(url_for('users.account'))
     
