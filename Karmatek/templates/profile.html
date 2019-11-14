@@ -210,11 +210,19 @@
                                 <div class="container" style="padding: 12px;">
                                     <ul>
                                         {% for event in events %}
-                                        <li>
-                                            <strong>{{ event.event }}</strong>
-                                        </li>
+                                        <a href="{{url_for('users.event_detail', event_id=event.id)}}" style="color: rgb(99, 99, 99);">
+                                            <li>
+                                                <strong>{{ event.event }}</strong>
+                                            </li>
+                                        </a>
                                         {% endfor %}
                                     </ul>
+                                    <div style="display: inline; border: 1px solid black; border-radius: 20px;">
+                                        <span style="padding: 8px;">
+                                        <strong>i</strong>
+                                        </span>
+                                    </div>
+                                    <p>Click on the event for more details</p>
                                 </div>
                                 {% else %}
                                 <h3>It seems that you haven't registered for any event. Register in the events using the selection above.</h3>

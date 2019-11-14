@@ -126,3 +126,48 @@ def account():
         form.year.data = current_user.year
 
     return render_template('profile.html', form=form, events_form=events_form, events=events)
+
+####################################################
+# EVENT DETAILS SETUP ##############################
+####################################################
+
+text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident dignissimos necessitatibus quis modi repudiandae temporibus quaerat possimus suscipit blanditiis. Laborum sint voluptas nam ab beatae illo, molestias a quia magnam."
+data_dict = dict([("Robo Race", text),
+        ("Robo Carrom", text),
+        ("Robo Soccer", text),
+        ("Robo Maze", text),
+        ("Autonomous Line Follower", text),
+        ("Code Beta", text),
+        ("Code Pro", text),
+        ("Web Designing", text),
+        ("Pubg", text),
+        ("NFS MW", text),
+        ("Fifa", text),
+        ("Call-of-Duty", text),
+        ("Chess", text),
+        ("Nail it @19", text),
+        ("Petapixel", text),
+        ("Memester Challenge", text),
+        ("Matrivia", text),
+        ("Fandom", text),
+        ("Ek Duje ke liye", text),
+        ("CubicMatics", text)])
+
+@users.route('/<int:event_id>')
+def event_detail(event_id):
+    event = Events.query.get_or_404(event_id)
+    return render_template('event.html', event=event, data_dict=data_dict)
+
+####################################################
+# REMOVE PATICIPATION SETUP ########################
+####################################################
+
+@users.route('/<int:event_id>/delete', methods=["GET", "POST"])
+@login_required
+def delete(event_id):
+    event = Events.query.get_or_404(event_id)
+    
+    db.session.delete(event)
+    db.session.commit()
+
+    return redirect(url_for('users.account', event=event))
