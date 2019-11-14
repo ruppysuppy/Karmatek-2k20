@@ -193,51 +193,57 @@
                                         
                                     </select>
                             </div> -->
-                            <div class=col-md-12><br></div>
-                            <div class="container" style="color: rgb(99, 99, 99);">
-                                <form method="POST">
-                                    {{events_form.hidden_tag()}}
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            {{events_form.event_selector.label}}
-                                            <br> {{events_form.event_selector(class="form-control", placeholder="None")}}
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            {{events_form.submit(class="btn btn-primary", style="border-radius: 8px; padding: 10px 30px; font-size: 16px; margin-top: 24px;")}}
-                                        </div>
-                                </form>
-                                {% if events %}
-                                <div class="container" style="padding: 12px;">
-                                    <ul>
-                                        {% for event in events %}
-                                        <a href="{{url_for('users.event_detail', event_id=event.id)}}" style="color: rgb(99, 99, 99);">
-                                            <li>
-                                                <strong>{{ event.event }}</strong>
-                                            </li>
-                                        </a>
-                                        {% endfor %}
-                                    </ul>
-                                    <div style="display: inline; border: 1px solid black; border-radius: 20px;">
-                                        <span style="padding: 8px;">
-                                        <strong>i</strong>
-                                        </span>
-                                    </div>
-                                    <p>Click on the event for more details</p>
-                                </div>
-                                {% else %}
-                                <h3>It seems that you haven't registered for any event. Register in the events using the selection above.</h3>
-                                {% endif %}
-                                </div>
 
-                            </div>
                             <!-- <div class="text-center col-md-6"><button type="submit" class="but but1">Save & Pay Now</button></div>
                             <div class="text-center col-md-6"><button type="submit" class="but but1">Save & Pay Later</button></div> -->
                             <div class="text-center">
+                                <br>
                                 <!-- <button type="submit" class="but but1">Sign Up</button> -->
                                 {{form.submit(class="but but1", style="border-radius: 8px; padding: 10px 30px; font-size: 16px;")}}
                             </div>
                         </div>
                     </form>
+                </div>
+                <br>
+
+                <div class=col-md-12><br></div>
+                <div style="color: rgb(99, 99, 99);">
+                    <form method="POST">
+                        {{events_form.hidden_tag()}}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{events_form.event_selector.label}}
+                                <br> {{events_form.event_selector(class="form-control", placeholder="None")}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{events_form.submit(class="btn btn-primary", style="border-radius: 8px; padding: 10px 30px; font-size: 16px; margin-top: 24px;")}}
+                            </div>
+                    </form>
+
+                    {% if events %}
+                    <div class="container" style="padding: 12px;">
+                        <ul>
+                            {% for event in events %}
+                            <a href="{{url_for('users.event_detail', event_id=event.id)}}" style="color: rgb(99, 99, 99);">
+                                <li>
+                                    <strong>{{ event.event }}</strong>
+                                </li>
+                            </a>
+                            {% endfor %}
+                        </ul>
+                        <div style="display: inline; border: 1px solid black; border-radius: 20px;">
+                            <span style="padding: 8px;">
+                                        <strong>i</strong>
+                                        </span>
+                        </div>
+                        <p>Click on the event for more details</p>
+                    </div>
+                    {% else %}
+                    <h3>It seems that you haven't registered for any event. Register in the events using the selection above.</h3>
+                    {% endif %}
+                    </div>
+
+
                 </div>
 
             </div>
