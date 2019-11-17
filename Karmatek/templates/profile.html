@@ -222,6 +222,9 @@
 
                     {% if events %}
                     <div class="container" style="padding: 12px;">
+                        <h3>
+                            List of Selected Events:
+                        </h3>
                         <ul>
                             {% for event in events %}
                             <a href="{{url_for('users.event_detail', event_id=event.id)}}" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='rgb(99, 99, 99)'" style="color: rgb(99, 99, 99);">
@@ -231,15 +234,19 @@
                             </a>
                             {% endfor %}
                         </ul>
-                        <div style="display: inline; border: 1px solid black; border-radius: 20px;">
+                    </div>
+                    <div class="col-md-12">
+                        <div style="display: inline; border: 1px solid black; border-radius: 25px;">
                             <span style="padding: 8px;">
-                                        <strong>i</strong>
-                                        </span>
+                            <strong style="position: relative; right: -2px;">i</strong>
+                          </span>
                         </div>
-                        <p>Click on the event for more details</p>
+                        <div class="col-md-2" style="display: inline;">
+                            Click on the event for more details
+                        </div>
                     </div>
                     {% else %}
-                    <h3>It seems that you haven't registered for any event. Register in the events using the selection above.</h3>
+                    <h3 style="margin-top: 24px;">It seems that you haven't registered for any event. Register in the events using the selection above.</h3>
                     {% endif %}
                     </div>
 

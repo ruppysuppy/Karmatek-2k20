@@ -89,7 +89,9 @@
             <h1 class="mb-4 pb-0">Karmatek<br><span>2020</span></h1>
             <p class="mb-4 pb-0">10-12 March, GCECT, Kolkata</p>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-            <a href="#contact" class="about-btn scrollto">Participate in Karmatek</a>
+            {% if current_user.is_authenticated %}
+            <a href="{{url_for('users.account')}}" class="about-btn scrollto">Participate in Karmatek</a> {% else %}
+            <a href="{{url_for('home')}}#participate" class="about-btn scrollto">Participate in Karmatek</a> {% endif %}
         </div>
     </section>
 
@@ -1288,8 +1290,8 @@
             </div>
         </section>
 
-        {% if not current_user.is_authenticated %}
         <section id="participate" class="section-bg wow fadeInUp">
+            {% if not current_user.is_authenticated %}
             <div class="container">
                 <div class="col-md-12">
                     <div class="text-center">
@@ -1314,8 +1316,10 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div style="height: 0;"></div>
+            {% endif %}
         </section>
-        {% endif %}
 
         <!--  <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>
