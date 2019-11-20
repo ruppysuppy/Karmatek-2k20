@@ -13,3 +13,14 @@ This project uses the following technologies:
 
 ### Note
 The front-end was made using the template "The Event" available at BootstrapMade (https://bootstrapmade.com/)
+
+## How to use (for non-technical people/beginners)
+Follow the steps to the local server on your machine:
+* Download and install Python 3.x
+* Download the repository
+* Extract the repository at the desired location
+* Navigate to the extrated folder
+* Open the Terminal/CMD/PowerShell at the location (Shift + Right Click => Run Command Prompt for Windows Users)
+* Run the Command 'pip install -r requirements.txt' (to install the dependencies)
+* Run the Command 'python app.py'
+* Run the website (Navigate to '127.0.0.1:5000' on a web-browser)
