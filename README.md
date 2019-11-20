@@ -1,7 +1,7 @@
 # Karmatek-2k20
 This is the website for Karmatek 2k20, the tech fest of Govenment College of Engineering and Ceramic Technology.
 
-## Technologies Used
+## Languages/Frameworks/Techlogy Used
 This project uses the following technologies:
 * Python 3.x
 * Flask 1.11
