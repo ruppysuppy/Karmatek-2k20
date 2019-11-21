@@ -12,7 +12,7 @@ This project uses the following technologies:
 * CSS 3
 
 ### Note
-The front-end was made using the template "The Event" available at BootstrapMade (https://bootstrapmade.com/)
+The front-end was made by Rajashi Chaterjee using the template "The Event" available at BootstrapMade (https://bootstrapmade.com/)
 
 ## How to use (for non-technical people/beginners)
 Follow the steps to the local server on your machine:
