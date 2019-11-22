@@ -10,7 +10,7 @@
 
     <!-- Favicons -->
     <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="icon">
-    <!-- <link href="img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+    <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
@@ -44,8 +44,6 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
-                <!-- Uncomment below if you prefer to use a text logo -->
-                <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
                 <a href="{{url_for('home')}}#intro" class="scrollto"><img src="{{url_for('static', filename='img/PicsArt_10-29-03.45.41')}}" alt="" title=""></a>
             </div>
 
@@ -55,7 +53,6 @@
                     <li><a href="{{url_for('home')}}#about">About</a></li>
                     <li><a href="{{url_for('home')}}#schedule">Events</a></li>
                     <li><a href="{{url_for('home')}}#venue">Venue</a></li>
-                    <!-- <li><a href="{{url_for('home')}}#hotels">Hotels</a></li> -->
                     <li><a href="{{url_for('home')}}#gallery">Gallery</a></li>
                     <li><a href="{{url_for('home')}}#supporters">Sponsors</a></li>
                     <li><a href="{{url_for('home')}}#speakers">Team Karmatek</a></li>
@@ -66,10 +63,8 @@
                     {% else %}
                     <li><a href="{{url_for('home')}}#participate">Login/Sign Up</a></li>
                     {% endif %}
-                    <!-- <li class="buy-tickets"><a href="{{url_for('home')}}#buy-tickets">Buy Tickets</a></li> -->
                 </ul>
             </nav>
-            <!-- #nav-menu-container -->
         </div>
     </header>
     <!-- #header -->
@@ -93,10 +88,14 @@
                 </h1>
                 <br>
                 <h3>
-                    {{data_dict[event.event]}}
+                    {{data_dict[event.event]['text']}}
                 </h3>
                 <br>
-                <button type="button" name="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#del_modal">Delete</button>
+                <h4>
+                    Date and Time: {{data_dict[event.event]['d&t']}}
+                </h4>
+                <br>
+                <button type="button" name="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#del_modal">Remove</button>
             </div>
         </section>
 
@@ -106,7 +105,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Delete Event</h5>
+                        <h5 class="modal-title">Remove Event Participation</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -118,7 +117,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
 
                         <form action="{{url_for('users.delete', event_id=event.id)}}" method="post">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="submit" class="btn btn-danger" value="Remove">
                         </form>
 
                     </div>

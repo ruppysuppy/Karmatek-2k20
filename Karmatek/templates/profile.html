@@ -10,7 +10,7 @@
 
     <!-- Favicons -->
     <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="icon">
-    <!-- <link href="img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+    <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
@@ -44,8 +44,6 @@
         <div class="container">
 
             <div id="logo" class="pull-left">
-                <!-- Uncomment below if you prefer to use a text logo -->
-                <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
                 <a href="{{url_for('home')}}#intro" class="scrollto"><img src="{{url_for('static', filename='img/PicsArt_10-29-03.45.41')}}" alt="" title=""></a>
             </div>
 
@@ -55,7 +53,6 @@
                     <li><a href="{{url_for('home')}}#about">About</a></li>
                     <li><a href="{{url_for('home')}}#schedule">Events</a></li>
                     <li><a href="{{url_for('home')}}#venue">Venue</a></li>
-                    <!-- <li><a href="{{url_for('home')}}#hotels">Hotels</a></li> -->
                     <li><a href="{{url_for('home')}}#gallery">Gallery</a></li>
                     <li><a href="{{url_for('home')}}#supporters">Sponsors</a></li>
                     <li><a href="{{url_for('home')}}#speakers">Team Karmatek</a></li>
@@ -66,10 +63,8 @@
                     {% else %}
                     <li><a href="{{url_for('home')}}#participate">Login/Sign Up</a></li>
                     {% endif %}
-                    <!-- <li class="buy-tickets"><a href="{{url_for('home')}}#buy-tickets">Buy Tickets</a></li> -->
                 </ul>
             </nav>
-            <!-- #nav-menu-container -->
         </div>
     </header>
     <!-- #header -->
@@ -92,114 +87,35 @@
 
                 <div class="section-header">
                     <h2>Your Details:</h2>
-                    <!-- <p>Nihil officia ut sint molestiae tenetur.</p> -->
                 </div>
-
-                <!--  <div class="row contact-info">
-      
-                <div class="col-md-4">
-                  <div class="contact-address">
-                    <i class="ion-ios-location-outline"></i>
-                    <h3>Address</h3>
-                    <address>73 Abhinash Chandra Banerjee Lane, Kolkata 700010</address>
-                  </div>
-                </div>
-      
-                <div class="col-md-4">
-                  <div class="contact-phone">
-                    <i class="ion-ios-telephone-outline"></i>
-                    <h3>Phone Number</h3>
-                    <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
-                  </div>
-                </div>
-      
-                <div class="col-md-4">
-                  <div class="contact-email">
-                    <i class="ion-ios-email-outline"></i>
-                    <h3>Email</h3>
-                    <p><a href="mailto:info@example.com">info@example.com</a></p>
-                  </div>
-                </div>
-      
-              </div> -->
 
                 <div class="form">
-                    <!-- <div id="sendmessage">Your message has been sent. Thank you!</div>
-                  <div id="errormessage"></div> -->
                     <form method="POST">
                         {{form.hidden_tag()}}
                         <div class="form-row">
                             <div class="form-group col-md-12">
-                                <!-- <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" disabled/> -->
                                 {{form.email.label}}
                                 <br> {{form.email(class="form-control", id="email", placeholder="Enter your email", disabled=True)}}
-                                <!-- <div class="validation"></div> -->
                             </div>
                             <div class="form-group col-md-6">
-                                <!-- <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" disabled/> -->
-                                <!-- <div class="validation"></div> -->
                                 {{form.name.label}}
                                 <br> {{form.name(class="form-control", id="name", placeholder="Enter Your Name")}}
                             </div>
                             <div class="form-group col-md-6">
-                                <!-- <input type="tel" class="form-control" name="phno" id="phno" placeholder="Your Phone No" disabled/>
-                                <div class="validation"></div> -->
                                 {{form.ph_num.label}}
                                 <br> {{form.ph_num(class="form-control", id="phno", placeholder="Enter Your Phone Number")}}
                             </div>
                             <div class="form-group col-md-6">
-                                <!-- <input type="text" class="form-control" name="year" id="year" placeholder="Your Current Year" disabled/> -->
-                                <!-- <div class="validation"></div> -->
                                 {{form.year.label}}
                                 <br> {{form.year(class="form-control", id="year", placeholder="Enter Your Current Year")}}
                             </div>
                             <div class="form-group col-md-6">
-                                <!-- <input type="text" class="form-control" name="dept" id="dept" placeholder="Your Department" disabled/> -->
-                                <!-- <div class="validation"></div> -->
                                 {{form.dept.label}}
                                 <br> {{form.dept(class="form-control", id="dept", placeholder="Enter Your Department")}}
                             </div>
 
-                            <!--  <div class="form-group col-md-12">
-                                <input type="password" class="form-control" name="pass" id="pass" data-rule="minlen:6" data-msg="Please enter at least 6 chars" placeholder="Put a Technologically Strong Password" required/>
-                                <div class="validation"></div>
-                              </div> -->
-                            <!-- <div class="col-md-8 form-group">
-                                <input type="text" id="sel" class="form-control" placeholder="Showcase your Skills" disabled>
-                            </div>
-                            <div class="col-md-4 form-group">
-                                <select id="no-checkboxes" class="form-control">
-                                        <option value="">--select--</option>
-                                        <option value="Robo Race" >Robo Race</option>
-                                        <option value="Robo Carrom" >Robo Carrom</option>
-                                        <option value="Robo Soccer">Robo Soccer</option>
-                                        <option value="Robo Maze">Robo Maze</option>
-                                        <option value="Autonomous Line Follower">Autonomous Line Follower</option>
-                                        <option value="Code Beta">Code Beta</option>
-                                        <option value="Code Pro" >Code Pro</option>
-                                        <option value="Web Designing" >Web Designing</option>
-                                        <option value="Pubg">Pubg</option>
-                                        <option value="NFS MW">NFS MW</option>
-                                        <option value="Fifa">Fifa</option>
-                                        <option value="Call-of-Duty">Call-of-Duty</option>
-                                        <option value="Chess">Chess</option>
-                                        <option value="Nail it @19" >Nail it @19</option>
-                                        <option value="Petapixel" >Petapixel</option>
-                                        <option value="Memester Challenge">Memester Challenge</option>
-                                        <option value="Matrivia">Matrivia</option>
-                                        <option value="Fandom">Fandom</option>
-                                        <option value="Ek Duje ke liye">Ek Duje ke liye</option>
-                                        <option value="CubicMatics" >CubicMatics</option>
-                                        
-                                    </select>
-                            </div> -->
-
-                            <!-- <div class="text-center col-md-6"><button type="submit" class="but but1">Save & Pay Now</button></div>
-                            <div class="text-center col-md-6"><button type="submit" class="but but1">Save & Pay Later</button></div> -->
                             <div class="text-center">
-                                <br>
-                                <!-- <button type="submit" class="but but1">Sign Up</button> -->
-                                {{form.submit(class="but but1", style="border-radius: 8px; padding: 10px 30px; font-size: 16px;")}}
+                                <br> {{form.submit(class="but but1", style="border-radius: 8px; padding: 10px 30px; font-size: 16px;")}}
                             </div>
                         </div>
                     </form>
@@ -255,84 +171,11 @@
 
             </div>
         </section>
-        <!-- #contact -->
-
     </main>
-
 
     <!--==========================
     Footer
   ============================-->
-    <!--   <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <img src="img/logo.png" alt="TheEvenet">
-            <p>In alias aperiam. Placeat tempore facere. Officiis voluptate ipsam vel eveniet est dolor et totam porro. Perspiciatis ad omnis fugit molestiae recusandae possimus. Aut consectetur id quis. In inventore consequatur ad voluptate cupiditate debitis accusamus repellat cumque.</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">About us</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Services</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="fa fa-angle-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
-            </p>
-
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>TheEvent</strong>. All Rights Reserved
-      </div>
-      <div class="credits"> -->
-    <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
-        -->
-    <!--    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
-    </div> -->
 
     <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 
