@@ -94,6 +94,9 @@ def account():
     events = list(Events.query.filter_by(user_id=current_user.id))
     events_form = EventsForm()
 
+    for i in range(len(events)):
+        events[i] = (url_for('users.delete', event_id=events[i].id), events[i])
+    
     if events_form.validate_on_submit():
         check = list(Events.query.filter_by(user_id=current_user.id, event=events_form.event_selector.data))
 

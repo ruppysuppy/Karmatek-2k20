@@ -141,19 +141,26 @@
                         <h3>
                             List of Selected Events:
                         </h3>
-                        <ul>
+                        <ul style="list-style: none;">
                             {% for event in events %}
-                            <a href="{{url_for('users.event_detail', event_id=event.id)}}" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='rgb(99, 99, 99)'" style="color: rgb(99, 99, 99);">
-                                <li>
-                                    <strong>{{ event.event }}</strong>
-                                </li>
-                            </a>
+                            <li class="col-md-12">
+                                <div class="col-md-1" style="display: inline;">
+                                    <a href="{{event[0]}}" onMouseOver="this.style.color='rgba(255, 0, 0, 0.5)'" onMouseOut="this.style.color='red'" style="color: red; font-size: large; font-weight: 900;">
+                                        X
+                                    </a>
+                                </div>
+                                <div class="col-md-2" style="display: inline;">
+                                    <a href="{{url_for('users.event_detail', event_id=event[1].id)}}" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='rgb(99, 99, 99)'" style="color: rgb(99, 99, 99);">
+                                        <strong>{{ event[1].event }}</strong>
+                                    </a>
+                                </div>
+                            </li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="col-md-12">
                         <div style="display: inline; border: 1px solid black; border-radius: 25px;">
-                            <span style="padding: 8px;">
+                            <span style="padding: 10px 5px;">
                             <strong style="position: relative; right: -2px;">i</strong>
                           </span>
                         </div>
