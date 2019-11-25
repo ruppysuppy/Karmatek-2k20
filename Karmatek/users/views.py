@@ -2,7 +2,7 @@
 # IMPORTS (FROM LIBRARY) ###########################
 ####################################################
 
-from flask import Blueprint, render_template, flash, redirect, request, url_for
+from flask import Blueprint, render_template, flash, redirect, request, url_for, abort
 from flask_login import login_user, logout_user, current_user, login_required
 
 ####################################################
@@ -175,9 +175,16 @@ data_dict = dict([("Robo Race", {'text': 'Design your own robo and bring it on t
         ("CubicMatics", {'text' : 'Can you solve the Rubik’s cube within seconds? Then register now to compete with other such speedcubers and win.',
             'd&t' : '10/03/2020 12:30pm'})])
 
-@users.route('/<int:event_id>')
+@users.route('/paticipation/<int:event_id>')
 def event_detail(event_id):
     event = Events.query.get_or_404(event_id)
+    
+    try:
+        if (event.user_id != current_user.id):
+            abort(403)
+    except:
+        abort(403)
+    
     return render_template('event.html', event=event, data_dict=data_dict)
 
 ####################################################
