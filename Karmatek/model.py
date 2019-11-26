@@ -49,6 +49,16 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User-name: {self.username}\nEmail: {self.email}"
+    
+    def json(self):
+        return {
+            'id': self.id,
+            'name': self.username,
+            'email': self.email,
+            'phone': self.ph_num,
+            'year': self.year,
+            'dept': self.dept
+            }
 
 ####################################################
 # PARTICIPATING EVENTs SETUP #######################
@@ -72,3 +82,9 @@ class Events(db.Model):
     
     def __str__(self):
         return self.__repr__()
+    
+    def json(self):
+        return {
+            'id': self.user_id,
+            'event': self.event
+            }

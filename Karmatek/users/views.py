@@ -195,6 +195,12 @@ def event_detail(event_id):
 @login_required
 def delete(event_id):
     event = Events.query.get_or_404(event_id)
+
+    try:
+        if (event.user_id != current_user.id):
+            abort(403)
+    except:
+        abort(403)
     
     db.session.delete(event)
     db.session.commit()
