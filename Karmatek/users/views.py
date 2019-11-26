@@ -128,7 +128,7 @@ def account():
         form.dept.data = current_user.dept
         form.year.data = current_user.year
 
-    return render_template('profile.html', form=form, events_form=events_form, events=events)
+    return render_template('profile.html', form=form, events_form=events_form, events=events, len=len)
 
 ####################################################
 # EVENT DETAILS SETUP ##############################

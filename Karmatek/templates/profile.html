@@ -141,26 +141,49 @@
                             List of Selected Events:
                         </h3>
                         <ul style="list-style: none; padding: 0;">
-                            {% for event in events %}
+                            {% for i in range(len(events)) %}
                             <li class="col-md-12">
                                 <div class="col-md-1" style="display: inline;">
-                                    <a href="{{event[0]}}" onMouseOver="this.style.color='rgba(255, 0, 0, 0.5)'" onMouseOut="this.style.color='red'" style="color: red; font-size: large; font-weight: 900;">
+                                    <button type="button" name="button" data-toggle="modal" data-target="#del_modal{{i}}" onMouseOver="this.style.color='rgba(255, 0, 0, 0.5)'" onMouseOut="this.style.color='red'" style="color: red; font-size: large; font-weight: 900; border: none; background: none;">
                                         X
-                                    </a>
+                                    </button>
                                 </div>
                                 <div class="col-md-2" style="display: inline;">
-                                    <a href="{{url_for('users.event_detail', event_id=event[1].id)}}" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='rgb(99, 99, 99)'" style="color: rgb(99, 99, 99);">
-                                        <strong>{{ event[1].event }}</strong>
+                                    <a href="{{url_for('users.event_detail', event_id=events[i][1].id)}}" onMouseOver="this.style.color='black'" onMouseOut="this.style.color='rgb(99, 99, 99)'" style="color: rgb(99, 99, 99);">
+                                        <strong>{{ events[i][1].event }}</strong>
                                     </a>
                                 </div>
                             </li>
+                            <div class="modal" tabindex="-1" role="dialog" id="del_modal{{i}}">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Remove Event Participation in {{ events[i][1].event }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Are you sure you want to remove your participation entry?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                                            <form action="{{url_for('users.delete', event_id=events[i][1].id)}}" method="post">
+                                                <input type="submit" class="btn btn-danger" value="Remove">
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="col-md-12">
                         <div style="display: inline; border: 1px solid black; border-radius: 25px;">
                             <span style="padding: 8px 6px;">
-                            <strong style="position: relative; right: -2px;">i</strong>
+                            <strong style="position: relative; right: -2.5px;">i</strong>
                           </span>
                         </div>
                         <div class="col-md-2" style="display: inline;">
