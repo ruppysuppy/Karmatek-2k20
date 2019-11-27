@@ -52,12 +52,12 @@ class User(db.Model, UserMixin):
     
     def json(self):
         return {
-            'id': self.id,
-            'name': self.username,
-            'email': self.email,
-            'phone': self.ph_num,
-            'year': self.year,
-            'dept': self.dept
+            'Id': self.id,
+            'Name': self.username,
+            'Email': self.email,
+            'Phone': self.ph_num,
+            'Year': self.year,
+            'Dept': self.dept
             }
 
 ####################################################
@@ -85,6 +85,6 @@ class Events(db.Model):
     
     def json(self):
         return {
-            'id': self.user_id,
-            'event': self.event
+            'Id': self.user_id,
+            'Event': self.event
             }
