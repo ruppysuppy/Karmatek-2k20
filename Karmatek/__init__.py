@@ -2,7 +2,9 @@
 # IMPORTS (FROM LIBRARY) ###########################
 ####################################################
 
+from datetime import timedelta
 from flask import Flask, render_template, Blueprint
+from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -26,10 +28,22 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 ####################################################
+# COOKIE LIFETIME SETUP ############################
+####################################################
+
+app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=1)
+
+####################################################
 # MIGRATION SETUP ##################################
 ####################################################
 
 Migrate(app, db)
+
+####################################################
+# API SETUP ########################################
+####################################################
+
+api = Api(app)
 
 ####################################################
 # LOGIN SETUP ######################################
@@ -46,7 +60,9 @@ login_manager.login_view = 'users.login'
 from Karmatek.core.views import core
 from Karmatek.users.views import users
 from Karmatek.error_pages.handler import error_pages
+from Karmatek.api import api_blueprint
 
 app.register_blueprint(core)
 app.register_blueprint(users)
 app.register_blueprint(error_pages)
+app.register_blueprint(api_blueprint)
