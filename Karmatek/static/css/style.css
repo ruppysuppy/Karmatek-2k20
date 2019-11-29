@@ -485,7 +485,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 #intro {
     width: 100%;
     height: 100vh;
-    background: url(../img/PhotoGrid_1572187270341.jpg) top center;
+    background: url(../img/Index/PhotoGrid_1572187270341.jpg) top center;
     opacity: 1;
     background-size: 75%;
     overflow: hidden;
@@ -671,7 +671,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 --------------------------------------------------------------*/
 
 #about {
-    background: url("../img/about-bg.jpg");
+    background: url("../img/Index/about-bg.jpg");
     background-size: cover;
     overflow: hidden;
     position: relative;
@@ -927,7 +927,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #venue .venue-info {
-    background: url("../img/college.jpg") top center no-repeat;
+    background: url("../img/Index/college.jpg") top center no-repeat;
     background-size: cover;
     position: relative;
     padding-top: 60px;
