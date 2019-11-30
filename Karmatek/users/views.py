@@ -4,6 +4,7 @@
 
 from flask import Blueprint, render_template, flash, redirect, request, url_for, abort
 from flask_login import login_user, logout_user, current_user, login_required
+from flask_mail import Message
 
 ####################################################
 # IMPORTS (LOCAL) ##################################
@@ -11,7 +12,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 from Karmatek.users.forms import LoginForm, Register, UpdateUserForm, EventsForm
 from Karmatek.model import User, Events
-from Karmatek import login_manager, db
+from Karmatek import app, db, login_manager, mail
 
 ####################################################
 # BLUEPRINT SETUP ##################################
@@ -58,11 +59,19 @@ def register():
         user1 = User.query.filter_by(email=form.email.data).first()
 
         if (user1 == None):
+            if (len(form.password.data) < 6):
+                flash('Use a stronger password')
+                return redirect(url_for('users.register'))
+
             user = User(email=form.email.data, username=form.name.data, password=form.password.data, ph_num=form.ph_num.data, dept=form.dept.data, year=form.year.data)
             db.session.add(user)
             db.session.commit()
 
-            flash('Thankyou for Registering. Welcome to Karmatek 2k20!')
+            msg = Message('Karmatek 2k20 Confirmation', sender=app.config["MAIL_USERNAME"], recipients=[form.email.data])
+            msg.html = render_template("mail.html", name=form.name.data)
+            mail.send(msg)
+
+            flash(f'Thankyou for Registering. Welcome to Karmatek 2k20! An email has been sent to "{form.email.data}"')
 
             return redirect(url_for('users.login'))
         

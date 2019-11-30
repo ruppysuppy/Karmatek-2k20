@@ -6,6 +6,7 @@ from datetime import timedelta
 from flask import Flask, render_template, Blueprint
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 from flask_migrate import Migrate
 from flask_login import LoginManager
 import os
@@ -31,7 +32,23 @@ db = SQLAlchemy(app)
 # COOKIE LIFETIME SETUP ############################
 ####################################################
 
-app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=1)
+app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=7)
+
+####################################################
+# EMAIL SETUP ######################################
+####################################################
+
+app.config.update(
+	DEBUG = False,
+	#EMAIL SETTINGS
+	MAIL_SERVER = 'smtp.gmail.com',
+	MAIL_PORT = 465,
+	MAIL_USE_SSL = True,
+	MAIL_USERNAME = "sender's_email@gmail.com",
+	MAIL_PASSWORD = "sender's_password"
+	)
+
+mail = Mail(app)
 
 ####################################################
 # MIGRATION SETUP ##################################
