@@ -29,7 +29,7 @@ class Api_endpoint_Resource(Resource):
                 users = list(User.query.all())
                 events = list(Events.query.all())
 
-                return [[user.json() for user in users], [event.json() for event in events]]
+                return [[user.json() for user in users if (user.confirm)], [event.json() for event in events]]
 
             else:
                 abort(403)

@@ -5,6 +5,7 @@
 from flask import Blueprint, render_template, flash, redirect, request, url_for, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from flask_mail import Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 
 ####################################################
 # IMPORTS (LOCAL) ##################################
@@ -19,6 +20,12 @@ from Karmatek import app, db, login_manager, mail
 ####################################################
 
 users = Blueprint('users', __name__)
+
+####################################################
+# TIMED SERIALIZER SETUP ###########################
+####################################################
+
+serializer = URLSafeTimedSerializer('somesecretkey')
 
 ####################################################
 # LOGIN SETUP ######################################
@@ -67,11 +74,31 @@ def register():
             db.session.add(user)
             db.session.commit()
 
+            token = serializer.dumps(form.email.data, salt='email-confirm')
+            link = url_for('users.confirm_email', token=token, _external=True)
+            link_home = url_for('home', _external=True)
+
             msg = Message('Karmatek 2k20 Confirmation', sender=app.config["MAIL_USERNAME"], recipients=[form.email.data])
-            msg.html = render_template("mail.html", name=form.name.data)
+
+            msg.body = f'''
+\tHello {form.name.data}
+
+Thankyou for registering at Karmatek 2k20. Please click on the link below to confirm your email id.
+Your confirmation link is: {link}
+Please login to your account and select the events you want to paricipate in as soon as possible at the official Karmatek 2k20 site ({link_home}).
+Hope you have an awesome time.
+LET'S TECHNICATE....
+        
+\tYour Sincerely
+\tTapajyoti Bose
+\tTechincal Head
+\tKarmatek 2k20
+\tGCECT Tech-fest
+            '''
+
             mail.send(msg)
 
-            flash(f'Thankyou for Registering. Welcome to Karmatek 2k20! An email has been sent to "{form.email.data}"')
+            flash(f'Thankyou for Registering. Welcome to Karmatek 2k20! A confirmation email has been sent to "{form.email.data}"')
 
             return redirect(url_for('users.login'))
         
@@ -217,3 +244,22 @@ def delete(event_id):
     flash('Successfully Removed Event Participation!')
 
     return redirect(url_for('users.account', event=event))
+
+####################################################
+# EMAIL CONFIRMATION SETUP #########################
+####################################################
+
+@users.route('/confirm/<token>')
+def confirm_email(token):
+    try:
+        email = serializer.loads(token, salt='email-confirm', max_age=86400)
+        user = User.query.filter_by(email=email).first()
+        user.confirm = 1
+        db.session.commit()
+
+    except SignatureExpired:
+        flash('Signature has expired. Create a new account and confirm the mail as soon as possible.')
+        return render_template('home')
+    
+    flash('Email id Confirmed! Now you can select events to paticiapte in.')
+    return redirect(url_for('users.account'))

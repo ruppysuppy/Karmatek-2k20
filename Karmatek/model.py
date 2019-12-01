@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     ph_num = db.Column(db.String(10))
     dept = db.Column(db.String(128))
     year = db.Column(db.Integer)
+    confirm = db.Column(db.Integer, unique=False, default=0)
 
     posts = db.relationship('Events', backref='author', lazy=True)
 
@@ -43,6 +44,7 @@ class User(db.Model, UserMixin):
         self.year = year
         self.dept = dept
         self.ph_num = ph_num
+        self.confirm = 0
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -57,7 +59,8 @@ class User(db.Model, UserMixin):
             'Email': self.email,
             'Phone': self.ph_num,
             'Year': self.year,
-            'Dept': self.dept
+            'Dept': self.dept,
+            'Confirm': self.confirm
             }
 
 ####################################################
