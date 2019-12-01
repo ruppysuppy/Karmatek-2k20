@@ -24,3 +24,6 @@ Follow the steps to the local server on your machine:
 * Run the Command 'pip install -r requirements.txt' (to install the dependencies)
 * Run the Command 'python app.py'
 * Run the website (Navigate to '127.0.0.1:5000' on a web-browser)
+
+### Note
+To use the email confirmation, the email id and password has to be entered in Karmatek-2k20/Karmatek/__init__.py ('MAIL_USERNAME' and 'MAIL_PASSWORD' in the 'EMAIL SETUP' Section) and in google settings, less secure app access must be turned on.
