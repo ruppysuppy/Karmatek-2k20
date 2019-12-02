@@ -2,7 +2,7 @@
 # IMPORTS (LOCAL) ##################################
 ####################################################
 
-from Karmatek import api
+from Karmatek import api, db
 from Karmatek.model import User, Events
 
 ####################################################
@@ -31,6 +31,24 @@ class Api_endpoint_Resource(Resource):
 
                 return [[user.json() for user in users if (user.confirm)], [event.json() for event in events]]
 
+            else:
+                abort(403)
+        
+        else:
+            return abort(403)
+    
+    def post(self):
+        if ('user' in request.headers and request.headers.get('user') == 'admin'):
+            if ('password' in request.headers and request.headers.get('password') == 'supersecretpassword'):
+                emails = list(db.engine.execute('select users.email \
+                    from users \
+                    where users.confirm=0'))
+                
+                for i in range(len(emails)):
+                    emails[i] = emails[i][0]
+
+                return emails
+            
             else:
                 abort(403)
         
