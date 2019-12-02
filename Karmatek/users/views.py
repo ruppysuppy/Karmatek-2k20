@@ -74,13 +74,14 @@ def register():
             db.session.add(user)
             db.session.commit()
 
-            token = serializer.dumps(form.email.data, salt='email-confirm')
-            link = url_for('users.confirm_email', token=token, _external=True)
-            link_home = url_for('home', _external=True)
+            try:
+                token = serializer.dumps(form.email.data, salt='email-confirm')
+                link = url_for('users.confirm_email', token=token, _external=True)
+                link_home = url_for('home', _external=True)
 
-            msg = Message('Karmatek 2k20 Confirmation', sender=app.config["MAIL_USERNAME"], recipients=[form.email.data])
+                msg = Message('Karmatek 2k20 Confirmation', sender=app.config["MAIL_USERNAME"], recipients=[form.email.data])
 
-            msg.body = f'''
+                msg.body = f'''
 \tHello {form.name.data}
 
 Thankyou for registering at Karmatek 2k20. Please click on the link below to confirm your email id.
@@ -96,11 +97,15 @@ LET'S TECHNICATE....
 \tGCECT Tech-fest
             '''
 
-            mail.send(msg)
+                mail.send(msg)
 
-            flash(f'Thankyou for Registering. Welcome to Karmatek 2k20! A confirmation email has been sent to "{form.email.data}"')
+                flash(f'Thankyou for Registering. Welcome to Karmatek 2k20! A confirmation email has been sent to "{form.email.data}"')
 
-            return redirect(url_for('users.login'))
+                return redirect(url_for('users.login'))
+
+            except:
+                flash('There was an error while sending the mail. Please check the email id and re-register')
+                return redirect(url_for('users.register'))
         
         else:
             flash('Email already registered!')
