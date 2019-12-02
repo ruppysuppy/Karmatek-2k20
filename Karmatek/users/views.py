@@ -104,8 +104,7 @@ LET'S TECHNICATE....
                 return redirect(url_for('users.login'))
 
             except:
-                flash('There was an error while sending the mail. Please check the email id and re-register')
-                return redirect(url_for('users.register'))
+                abort(500)
         
         else:
             flash('Email already registered!')

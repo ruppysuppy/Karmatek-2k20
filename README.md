@@ -27,4 +27,4 @@ Follow the steps to the local server on your machine:
 
 ### Note
 To use the email confirmation, the email id and password has to be entered in Karmatek-2k20/Karmatek/__init__.py ('MAIL_USERNAME' and 'MAIL_PASSWORD' in the 'EMAIL SETUP' Section) and in google settings, less secure app access must be turned on.
-To use the site without running into email confirmation issues, in Karmatek-2k20/Karmatek/templates/profile.html, in line 83, replace 'current_user.confirm' with 'True' and comment out line 77 to 99 in Karmatek-2k20/Karmatek/users/views.py
+To use the site without running into email confirmation issues, in Karmatek-2k20/Karmatek/templates/profile.html, in line 83, replace 'current_user.confirm' with 'True' and comment out line 77 to 107 in Karmatek-2k20/Karmatek/users/views.py
