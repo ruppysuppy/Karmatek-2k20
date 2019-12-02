@@ -104,6 +104,7 @@ LET'S TECHNICATE....
                 return redirect(url_for('users.login'))
 
             except:
+                flash('Your Account has been created, but at the moment, we are unable to send the confirmation mail.')
                 abort(500)
         
         else:
