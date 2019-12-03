@@ -36,10 +36,10 @@ class Api_endpoint_Resource(Resource):
                 return [[user.json() for user in users if (user.confirm)], [event.json() for event in events]]
 
             else:
-                abort(403)
+                return {'message': 'Access Denied'}, 403
         
         else:
-            return abort(403)
+            return {'message': 'Access Denied'}, 403
     
 # POST REQUEST: Returns the list of unconfirmed users and re-sends the confirmation mail to them
 
@@ -87,14 +87,14 @@ PS: Ignore the mail if you have already confirmed your mail id.
 
                 except:
                     print('\nUnable to send mails, please check the user id and password (in Karmatek/__init__.py)\n')
-                    abort(500)
+                    return {'message': 'Internal Server Error'}, 500
 
                 return emails
             
             else:
-                abort(403)
+                return {'message': 'Access Denied'}, 403
         
         else:
-            return abort(403)
+            return {'message': 'Access Denied'}, 403
 
 api.add_resource(Api_endpoint_Resource, '/api')
