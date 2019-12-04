@@ -5,6 +5,7 @@
 from Karmatek import api, app, db, mail
 from Karmatek.model import User, Events
 from Karmatek.users.views import serializer, Message
+from Karmatek.api.credentials_confirm import check_admin_cred, update_admin_cred
 
 ####################################################
 # IMPORTS (FROM LIBRARY) ###########################
@@ -28,8 +29,8 @@ class Api_endpoint_Resource(Resource):
 # GET REQUEST: Returns the Users who have confirmed the email and the list of events they are paticipating in
 
     def get(self):
-        if ('user' in request.headers and request.headers.get('user') == 'admin'):
-            if ('password' in request.headers and request.headers.get('password') == 'supersecretpassword'):
+        if ('user' in request.headers and 'password' in request.headers):
+            if (check_admin_cred(request.headers.get('user'), request.headers.get('password'))):
                 users = list(User.query.all())
                 events = list(Events.query.all())
 
@@ -44,8 +45,8 @@ class Api_endpoint_Resource(Resource):
 # POST REQUEST: Returns the list of unconfirmed users and re-sends the confirmation mail to them
 
     def post(self):
-        if ('user' in request.headers and request.headers.get('user') == 'admin'):
-            if ('password' in request.headers and request.headers.get('password') == 'supersecretpassword'):
+        if ('user' in request.headers and 'password' in request.headers):
+            if (check_admin_cred(request.headers.get('user'), request.headers.get('password'))):
                 emails = list(db.engine.execute('select users.email \
                     from users \
                     where users.confirm=0'))
@@ -96,5 +97,23 @@ PS: Ignore the mail if you have already confirmed your mail id.
         
         else:
             return {'message': 'Access Denied'}, 403
+    
+    def update(self):
+        if ('user' in request.headers and 'password' in request.headers):
+            if (check_admin_cred(request.headers.get('user'), request.headers.get('password'))):
+                if ('user_new' in request.headers or 'password_new' in request.headers):
+                    if ('user_new' in request.headers):
+                        username = request.headers.get('user_new')
+                    else:
+                        username = None
+
+                    if ('password_new' in request.headers):
+                        password = request.headers.get('password_new')
+                    else:
+                        password = None
+
+                    update_admin_cred(username, password)
+                else:
+                    return {'message': 'New details not found'}, 404
 
 api.add_resource(Api_endpoint_Resource, '/api')
