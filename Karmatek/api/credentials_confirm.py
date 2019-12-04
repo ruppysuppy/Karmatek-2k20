@@ -34,7 +34,7 @@ def update_admin_cred(username=None, password=None):
         user['password'] = admin['password']
     
     with open('data.dat', 'wb') as data:
-        user = dump(admin, data)
+        dump(user, data)
 
 ####################################################
 # VALIDATE ADMIN DETAILS (HELPER) ##################
