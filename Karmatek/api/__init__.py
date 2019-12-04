@@ -97,8 +97,10 @@ PS: Ignore the mail if you have already confirmed your mail id.
         
         else:
             return {'message': 'Access Denied'}, 403
-    
-    def update(self):
+
+# PUT REQUEST: Updates the admin details (name and/or password)
+
+    def put(self):
         if ('user' in request.headers and 'password' in request.headers):
             if (check_admin_cred(request.headers.get('user'), request.headers.get('password'))):
                 if ('user_new' in request.headers or 'password_new' in request.headers):
@@ -115,5 +117,25 @@ PS: Ignore the mail if you have already confirmed your mail id.
                     update_admin_cred(username, password)
                 else:
                     return {'message': 'New details not found'}, 404
+
+            else:
+                return {'message': 'Access Denied'}, 403
+        
+        else:
+            return {'message': 'Access Denied'}, 403
+
+# PATCH REQUEST: Checks if the admin details is correct
+
+    def patch(self):
+        if ('user' in request.headers and 'password' in request.headers):
+            if (check_admin_cred(request.headers.get('user'), request.headers.get('password'))):
+                return {"status": "Accepted"}
+            
+            else:
+                return {"status": "Rejected"}, 403
+        
+        else:
+            return {"status": "Rejected"}, 403
+            
 
 api.add_resource(Api_endpoint_Resource, '/api')
