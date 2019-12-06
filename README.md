@@ -22,6 +22,10 @@ Follow the steps to the local server on your machine:
 * Navigate to the extrated folder
 * Open the Terminal/CMD/PowerShell at the location (Shift + Right Click => Run Command Prompt for Windows Users)
 * Run the Command 'pip install -r requirements.txt' (to install the dependencies)
+* Run the Command 'flask db init'
+* Run the Command 'flask db migrate -m "< Any message you want to save >"'
+* Run the Command 'flask db upgrade'
+* If you have problem running the above mentioned commands ('flask db init' onwards), you can uncomment 'db.create_all()' (Line 12) in app.py
 * Run the Command 'python app.py'
 * Run the website (Navigate to '127.0.0.1:5000' on a web-browser)
 
