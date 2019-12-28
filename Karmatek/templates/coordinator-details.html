@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Core Coordinator Details</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="icon">
+    <link href="{{url_for('static', filename='img/KarmaTek.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="{{url_for('static', filename='lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{{url_for('static', filename='lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='lib/venobox/venobox.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="{{url_for('static', filename='css/style.css')}}" rel="stylesheet">
+
+    <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+    <!--==========================
+    Header
+  ============================-->
+    <header id="header" class="header-fixed">
+        <div class="container">
+
+            <div id="logo" class="pull-left">
+                <a href="{{url_for('home')}}#intro" class="scrollto"><img src="{{url_for('static', filename='img/PicsArt_10-29-03.45.41')}}" alt="" title=""></a>
+            </div>
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active"><a href="{{url_for('home')}}">Home</a></li>
+                    <li><a href="{{url_for('home')}}#about">About</a></li>
+                    <li><a href="{{url_for('home')}}#schedule">Events</a></li>
+                    <li><a href="{{url_for('home')}}#venue">Venue</a></li>
+                    <li><a href="{{url_for('home')}}#gallery">Gallery</a></li>
+                    <li><a href="{{url_for('home')}}#supporters">Sponsors</a></li>
+                    <li><a href="{{url_for('home')}}#speakers">Team Karmatek</a></li>
+                    <li><a href="{{url_for('home')}}#contact">Contact Us</a></li>
+                    {% if current_user.is_authenticated %}
+                    <li><a href="{{url_for('users.account')}}">Profile</a></li>
+                    <li><a href="{{url_for('users.logout')}}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{{url_for('home')}}#participate">Login/Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" class="main-page">
+
+        <!--==========================
+      Speaker Details Section
+    ============================-->
+        <section id="speakers-details" class="wow fadeIn">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Core Co-ordinators Details</h2>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/IMG_20191028_020402.jpg')}}" alt="Debojyoti Goon" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="details">
+                            <h2>Debojyoti Goon</h2>
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>8972671436</p>
+
+                            <div class="social">
+
+                            </div>
+                            <p>Marketing Head</p>
+                            <p>Co-ordinator Fungineering</p>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="details" id="ab">
+                            <h2>Rajashi Chatterjee</h2>
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>8697438088</p>
+
+                            <div class="social">
+                            </div>
+                            <p>Public Relationship Head</p>
+                            <p>Co-ordinator Fungineering</p>
+                            <p>Website Developer (Front-end)</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/FB_IMG_1571072301616.jp')}}g" alt="Rajashi Chatterjee" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/Tap.jpg')}}" alt="Tapajyoti Bose" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="details">
+                            <h2>Tapajyoti Bose</h2>
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>9007407205</p>
+
+                            <div class="social">
+                            </div>
+                            <p>Technical Head</p>
+                            <p>Co-ordinator Coding</p>
+                            <p>Website Developer (Back-end + Front-end)</p>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="details" id="ab">
+                            <h2>Molay Mondal</h2>
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>6290432691</p>
+
+                            <div class="social">
+                            </div>
+                            <p>Management Head</p>
+                            <p>Co-ordinator Robotics</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/IMG_20191028_020419.jpg')}}" alt="Molay Mondal" class="img-fluid">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/IMG-20191028-WA0036.jpeg')}}" alt="Dwaipayan Mondal" class="img-fluid">
+                    </div>
+
+                    <div class="col-md-8">
+                        <div class="details">
+                            <h2>Dwaipayan Mondal</h2>
+
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>9836433159</p>
+                            <div class="social">
+                            </div>
+                            <p>Co-ordinator Robotics</p>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="details" id="ab">
+                            <h2>Bikram Das</h2>
+                            <p><i class="fa fa-phone">&nbsp;&nbsp;</i>9804460361</p>
+
+                            <div class="social">
+                            </div>
+                            <p>Co-ordinator Gaming</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <img src="{{url_for('static', filename='img/Coordinators/IMG_20191028_020349.jpg')}}" alt="Bikram Das" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>TheEvent</strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+        -->
+            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="{{url_for('static', filename='lib/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/jquery/jquery-migrate.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/easing/easing.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/superfish/hoverIntent.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/superfish/superfish.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/wow/wow.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/venobox/venobox.min.js')}}"></script>
+    <script src="{{url_for('static', filename='lib/owlcarousel/owl.carousel.min.js')}}"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="{{url_for('static', filename='contactform/contactform.js')}}"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+</html>
